@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 import Blockchain from './models/Blockchain.mjs';
 import TransactionPool from './models/TransactionPool.mjs';
 import Wallet from './models/Wallet.mjs';
-import blockRouter from './routes/block-routes.mjs';
-import blockchainRouter from './routes/blockchain-routes.mjs';
-import transactionRouter from './routes/transaction-routes.mjs';
+import blockRouter from '../routes/block-routes.mjs';
+import blockchainRouter from '../routes/blockchain-routes.mjs';
+import transactionRouter from '../routes/transaction-routes.mjs';
 import PubNubServer from './pubnub-server.mjs';
 
 dotenv.config({ path: './config/config.env' });

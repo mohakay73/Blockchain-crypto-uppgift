@@ -41,7 +41,7 @@ export default class Transaction {
 
   update({ sender, recipient, amount }) {
     if (amount > this.outputMap[sender.publicKey]) {
-      errorHandler('Not enough funds!');
+      throw new Error('Not enough funds!');
     }
 
     if (!this.outputMap[recipient]) {
