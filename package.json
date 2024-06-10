@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.mjs",
+    "dev-node": "cross-env GENERATE_NODE_PORT='true' nodemon server.mjs"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +16,8 @@
     "express": "^4.19.2",
     "pubnub": "^8.2.3",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
   }
 }
