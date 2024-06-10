@@ -60,10 +60,7 @@ export default class Blockchain {
     return true;
   }
 
-  // Static methods...
-  // Concensus
   static validateChain(chain) {
-    // Regel 1. Ha ett korrekt genesis block
     if (JSON.stringify(chain.at(0)) !== JSON.stringify(Block.genesis))
       return false;
 
@@ -73,14 +70,10 @@ export default class Blockchain {
       const currentLastHash = chain[i - 1].hash;
       const lastDifficulty = chain[i - 1].difficulty;
 
-      // Regel 2. Föregående blocks hash måste stämma överens med aktuellt blocks lastHash...
       if (lastHash !== currentLastHash) return false;
 
-      // Skydda oss mot för stora skillnader i difficulty värdet både uppåt och nedåt...
       if (Math.abs(lastDifficulty - difficulty) > 1) return false;
 
-      // Regel 3. Kontrollera så att blocket är ok...
-      // Att ingen har manipulerat datat...
       const validHash = createHash(
         timestamp,
         lastHash,

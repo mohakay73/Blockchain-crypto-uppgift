@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { verifySignature } from '../utilities/crypto-lib.mjs';
 import { REWARD_ADDRESS, MINING_REWARD } from '../config/settings.mjs';
+import errorHandler from '../middleware/errorHandler.mjs';
 
 export default class Transaction {
   constructor({ sender, recipient, amount, inputMap, outputMap }) {
@@ -39,8 +40,9 @@ export default class Transaction {
   }
 
   update({ sender, recipient, amount }) {
-    if (amount > this.outputMap[sender.publicKey])
-      throw new Error('Not enough funds!');
+    if (amount > this.outputMap[sender.publicKey]) {
+      errorHandler('Not enough funds!');
+    }
 
     if (!this.outputMap[recipient]) {
       this.outputMap[recipient] = amount;

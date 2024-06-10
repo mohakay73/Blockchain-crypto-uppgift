@@ -4,6 +4,7 @@ import { blockchain } from '../server.mjs';
 import Miner from '../models/Miner.mjs';
 import { pubnubServer } from '../server.mjs';
 import Wallet from '../models/Wallet.mjs';
+import ResponseModel from '../utilities/ResponseModel.mjs';
 
 export const addTransaction = (req, res, next) => {
   const { amount, recipient } = req.body;
@@ -21,13 +22,15 @@ export const addTransaction = (req, res, next) => {
   } catch (error) {
     return res
       .status(400)
-      .json({ success: false, statusCode: 400, error: error.message });
+      .json(new ResponseModel({ statusCode: 400, error: error.message }));
   }
 
   transactionPool.addTransaction(transaction);
   pubnubServer.broadcastTransaction(transaction);
 
-  res.status(201).json({ success: true, statusCode: 201, data: transaction });
+  res
+    .status(201)
+    .json(new ResponseModel({ statusCode: 201, data: transaction }));
 };
 
 export const getWalletBalance = (req, res, next) => {
@@ -37,19 +40,21 @@ export const getWalletBalance = (req, res, next) => {
     address,
   });
 
-  res.status(200).json({
-    success: true,
-    statusCode: 200,
-    data: { address: address, balance: balance },
-  });
+  res.status(200).json(
+    new ResponseModel({
+      statusCode: 200,
+      data: { address: address, balance: balance },
+    })
+  );
 };
 
 export const getTransactionPool = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    statusCode: 200,
-    data: transactionPool.transactionMap,
-  });
+  res.status(200).json(
+    new ResponseModel({
+      statusCode: 200,
+      data: transactionPool.transactionMap,
+    })
+  );
 };
 
 export const mineTransactions = (req, res, next) => {
@@ -62,9 +67,10 @@ export const mineTransactions = (req, res, next) => {
 
   miner.mineTransaction();
 
-  res.status(200).json({
-    success: true,
-    statusCode: 200,
-    data: 'Funkar faktiskt hyfsat just nu.',
-  });
+  res.status(200).json(
+    new ResponseModel({
+      statusCode: 200,
+      data: 'mineTransactions is working',
+    })
+  );
 };

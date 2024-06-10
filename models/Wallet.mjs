@@ -1,4 +1,5 @@
 import { INITIAL_BALANCE } from '../config/settings.mjs';
+import errorHandler from '../middleware/errorHandler.mjs';
 import { ellipticHash, createHash } from '../utilities/crypto-lib.mjs';
 import Transaction from './Transaction.mjs';
 
@@ -46,7 +47,9 @@ export default class Wallet {
       });
     }
 
-    if (amount > this.balance) throw new Error('Not enough funds!');
+    if (amount > this.balance) {
+      errorHandler('Not enough funds');
+    }
 
     return new Transaction({ sender: this, recipient, amount });
   }

@@ -2,7 +2,7 @@
   "name": "blockchain-crypto-uppgift-1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.mjs",
   "scripts": {
     "test": "vitest",
     "dev": "nodemon server.mjs",

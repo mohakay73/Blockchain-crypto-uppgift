@@ -1,5 +1,6 @@
 import { pubnubServer } from '../server.mjs';
 import { blockchain } from '../server.mjs';
+import ResponseModel from '../utilities/ResponseModel.mjs';
 
 export const mineBlock = (req, res, next) => {
   const data = req.body;
@@ -8,5 +9,5 @@ export const mineBlock = (req, res, next) => {
 
   pubnubServer.broadcast();
 
-  res.status(201).json({ success: true, statusCode: 201, data: block });
+  res.status(201).json(new ResponseModel({ statusCode: 201, data: block }));
 };
