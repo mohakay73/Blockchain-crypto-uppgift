@@ -37,7 +37,7 @@ export default class PubNubServer {
         const msg = JSON.parse(message);
 
         console.log(
-          `Message received on the channel: ${channel}, message: ${message}`
+          `Meddelande mottagits på kanal: ${channel}, meddelande: ${message}`
         );
 
         switch (channel) {

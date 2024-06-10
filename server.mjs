@@ -15,7 +15,6 @@ const credentials = {
   subscribeKey: process.env.SUBSCRIBE_KEY,
   secretKey: process.env.SECRET_KEY,
   userId: process.env.USER_ID,
-  presenceTimeout: 300,
 };
 
 export const blockchain = new Blockchain();
