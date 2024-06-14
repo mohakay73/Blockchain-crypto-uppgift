@@ -6,9 +6,13 @@ import Wallet from './models/Wallet.mjs';
 import blockRouter from '../Server/routes/block-routes.mjs';
 import blockchainRouter from '../Server/routes/blockchain-routes.mjs';
 import transactionRouter from '../Server/routes/transaction-routes.mjs';
+import authRouter from '../Server/routes/auth-routes.mjs';
 import PubNubServer from './pubnub-server.mjs';
+import { connectDb } from './config/mongo.mjs';
 
 dotenv.config({ path: './config/config.env' });
+
+connectDb();
 
 const credentials = {
   publishKey: process.env.PUBLISH_KEY,
@@ -42,6 +46,7 @@ setTimeout(() => {
 app.use('/api/v1/blockchain', blockchainRouter);
 app.use('/api/v1/block', blockRouter);
 app.use('/api/v1/wallet', transactionRouter);
+app.use('/api/v1/auth', authRouter);
 
 const synchronize = async () => {
   let response = await fetch(`${ROOT_NODE}/api/v1/blockchain`);
