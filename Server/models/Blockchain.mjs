@@ -8,6 +8,9 @@ export default class Blockchain {
     this.chain = [Block.genesis];
   }
 
+  latestBlock() {
+    return this.chain[this.chain.length - 1];
+  }
   // Instance method...
   addBlock({ data }) {
     const newBlock = Block.mineBlock({

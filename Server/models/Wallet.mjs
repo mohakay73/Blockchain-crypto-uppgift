@@ -15,11 +15,9 @@ export default class Wallet {
     let total = 0;
     let hasAddedTransaction = false;
 
-    // Gå igenom varje block i blockkedjan...
     for (let i = chain.length - 1; i > 0; i--) {
       const block = chain[i];
 
-      // För varje block behöver gå igenom transaktionerna...
       for (let transaction of block.data) {
         if (transaction.inputMap.address === address) {
           hasAddedTransaction = true;
@@ -38,7 +36,6 @@ export default class Wallet {
     return hasAddedTransaction ? total : INITIAL_BALANCE + total;
   }
 
-  // INSTANCE METHODS...
   createTransaction({ recipient, amount, chain }) {
     if (chain) {
       this.balance = Wallet.calculateBalance({

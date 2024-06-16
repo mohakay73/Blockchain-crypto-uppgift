@@ -1,6 +1,7 @@
 import hexToBinary from 'hex-to-binary';
 import { GENESIS_DATA, MINE_RATE } from '../config/settings.mjs';
 import { createHash } from '../utilities/crypto-lib.mjs';
+import BlockModel from './BlockSchema.mjs';
 
 export default class Block {
   constructor({ timestamp, lastHash, hash, data, nonce, difficulty }) {
@@ -12,12 +13,11 @@ export default class Block {
     this.difficulty = difficulty;
   }
 
-  // Getter... = property...
   static get genesis() {
     return new this(GENESIS_DATA);
   }
 
-  static mineBlock({ lastBlock, data }) {
+  static async mineBlock({ lastBlock, data }) {
     const lastHash = lastBlock.hash;
 
     let { difficulty } = lastBlock;
@@ -33,14 +33,23 @@ export default class Block {
       hexToBinary(hash).substring(0, difficulty) !== '0'.repeat(difficulty)
     );
 
-    return new this({
+    const newBlockData = {
       timestamp,
       lastHash,
       hash,
       data,
       nonce,
       difficulty,
-    });
+    };
+
+    try {
+      const block = await BlockModel.create(newBlockData);
+      return new this(block);
+    } catch (err) {
+      throw new Error(
+        `Failed to mine block and save to MongoDB: ${err.message}`
+      );
+    }
   }
 
   static adjustDifficultyLevel({ block, timestamp }) {

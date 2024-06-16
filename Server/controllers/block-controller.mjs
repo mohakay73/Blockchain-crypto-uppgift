@@ -1,13 +1,23 @@
+import ResponseModel from '../utilities/ResponseModel.mjs';
 import { pubnubServer } from '../server.mjs';
 import { blockchain } from '../server.mjs';
-import ResponseModel from '../utilities/ResponseModel.mjs';
+import Block from '../models/Block.mjs';
 
-export const mineBlock = (req, res, next) => {
+export const mineBlock = async (req, res, next) => {
   const data = req.body;
 
-  const block = blockchain.addBlock({ data: data });
+  try {
+    const block = await Block.mineBlock({
+      lastBlock: blockchain.latestBlock(),
+      data,
+    });
 
-  pubnubServer.broadcast();
+    pubnubServer.broadcast();
 
-  res.status(201).json(new ResponseModel({ statusCode: 201, data: block }));
+    res.status(201).json(new ResponseModel({ statusCode: 201, data: block }));
+  } catch (err) {
+    res
+      .status(500)
+      .json(new ResponseModel({ statusCode: 500, error: err.message }));
+  }
 };
