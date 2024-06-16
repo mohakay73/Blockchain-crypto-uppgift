@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { verifySignature } from '../utilities/crypto-lib.mjs';
 import { REWARD_ADDRESS, MINING_REWARD } from '../config/settings.mjs';
-import errorHandler from '../middleware/errorHandler.mjs';
 
 export default class Transaction {
   constructor({ sender, recipient, amount, inputMap, outputMap }) {
@@ -32,7 +31,13 @@ export default class Transaction {
       return false;
     }
 
-    if (!verifySignature({ publicKey: address, data: outputMap, signature })) {
+    if (
+      !verifySignature({
+        publicKey: address,
+        data: outputMap,
+        signature: JSON.parse(signature),
+      })
+    ) {
       return false;
     }
 
@@ -70,7 +75,7 @@ export default class Transaction {
       timestamp: Date.now(),
       amount: sender.balance,
       address: sender.publicKey,
-      signature: sender.sign(outputMap),
+      signature: JSON.stringify(sender.sign(outputMap)),
     };
   }
 }
