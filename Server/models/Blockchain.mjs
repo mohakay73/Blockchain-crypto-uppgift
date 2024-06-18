@@ -2,6 +2,8 @@ import { MINING_REWARD, REWARD_ADDRESS } from '../config/settings.mjs';
 import { createHash } from '../utilities/crypto-lib.mjs';
 import Block from './Block.mjs';
 import Transaction from './Transaction.mjs';
+import BlockchainModel from '../models/BlockchainSchema.mjs';
+import BlockModel from './BlockSchema.mjs';
 
 export default class Blockchain {
   constructor() {
@@ -11,7 +13,7 @@ export default class Blockchain {
   latestBlock() {
     return this.chain[this.chain.length - 1];
   }
-  // Instance method...
+
   addBlock({ data }) {
     const newBlock = Block.mineBlock({
       lastBlock: this.chain.at(-1),
@@ -19,6 +21,42 @@ export default class Blockchain {
     });
     this.chain.push(newBlock);
     return newBlock;
+  }
+  async save() {
+    try {
+      const blockchain = new BlockchainModel({ chain: this.chain });
+      await blockchain.save();
+    } catch (err) {
+      console.error('Error saving blockchain to MongoDB:', err);
+    }
+  }
+
+  async load() {
+    try {
+      console.log('Loading blockchain from MongoDB...');
+      const blocksData = await BlockModel.find().sort({ timestamp: 1 });
+      if (blocksData.length > 0) {
+        this.chain = blocksData;
+      } else {
+        console.log('No blocks found in MongoDB, starting with genesis block');
+      }
+    } catch (err) {
+      console.error('Error loading blockchain from MongoDB:', err);
+    }
+  }
+
+  async save() {
+    try {
+      for (const block of this.chain) {
+        const blockExists = await BlockModel.findOne({ hash: block.hash });
+        if (!blockExists) {
+          const newBlock = new BlockModel(block);
+          await newBlock.save();
+        }
+      }
+    } catch (err) {
+      console.error('Error saving blockchain to MongoDB:', err);
+    }
   }
 
   replaceChain(chain, shouldValidate, callback) {
