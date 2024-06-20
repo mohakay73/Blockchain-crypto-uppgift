@@ -1,43 +1,50 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { email, password } = formData;
-
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const onSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await axios.post('/api/login', formData);
-      console.log(res.data);
-    } catch (err) {
-      console.error(err.response.data);
+      const response = await fetch('http://localhost:5001/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(
+          `HTTP error! Status: ${response.status}, Message: ${errorMessage}`
+        );
+      }
+
+      const data = await response.json();
+      console.log(data); // Handle successful login response
+    } catch (error) {
+      console.error('Login error:', error.message);
     }
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleLogin}>
       <input
         type="email"
-        name="email"
         value={email}
-        onChange={onChange}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
+        required
       />
       <input
         type="password"
-        name="password"
         value={password}
-        onChange={onChange}
+        onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
+        required
       />
       <button type="submit">Login</button>
     </form>

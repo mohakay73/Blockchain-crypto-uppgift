@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import Blockchain from './models/Blockchain.mjs';
 import TransactionPool from './models/TransactionPool.mjs';
 import Wallet from './models/Wallet.mjs';
@@ -33,6 +34,14 @@ export const pubnubServer = new PubNubServer({
 
 const app = express();
 app.use(express.json());
+
+// Add CORS middleware with options to allow requests from specific origins
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from this origin
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 const DEFAULT_PORT = 5001;
 const ROOT_NODE = `http://localhost:${DEFAULT_PORT}`;
