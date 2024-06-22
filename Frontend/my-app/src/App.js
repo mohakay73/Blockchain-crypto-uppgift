@@ -12,6 +12,7 @@ import ResetPassword from './components/ResetPassword';
 import Profile from './components/Profile';
 import PrivateRoute from './utils/PrivateRoute';
 import AuthProvider from './context/AuthContext';
+import EmptyPage from './components/Emptypage';
 
 const App = () => {
   return (
@@ -43,6 +44,11 @@ const App = () => {
             path="/profile"
             element={<PrivateRoute component={Profile} />}
           />
+          <Route
+            path="/empty"
+            element={<EmptyPage />}
+          />{' '}
+          {/* Add this route */}
         </Routes>
       </Router>
     </AuthProvider>

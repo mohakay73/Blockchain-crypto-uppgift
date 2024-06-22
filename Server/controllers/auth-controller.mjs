@@ -33,7 +33,7 @@ export const login = asyncHandler(async (req, res, next) => {
 });
 
 export const getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).populate('course');
+  const user = await User.findById(req.user.id).populate('-password');
   res.status(200).json({
     success: true,
     statusCode: 200,

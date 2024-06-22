@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,6 +29,10 @@ const Login = () => {
 
       const data = await response.json();
       console.log(data); // Handle successful login response
+
+      // Store the token and navigate to the profile page
+      login(data.token, data.user); // Assuming data.user contains user details
+      navigate('/empty');
     } catch (error) {
       console.error('Login error:', error.message);
     }
