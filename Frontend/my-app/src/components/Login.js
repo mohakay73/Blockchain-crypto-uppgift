@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -38,24 +41,62 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        'http://localhost:5001/api/v1/auth/forgotpassword',
+        { email: forgotPasswordEmail }
+      );
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.response ? err.response.data : err.message);
+    }
+  };
+
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      {isForgotPassword ? (
+        <div>
+          <form onSubmit={handleForgotPassword}>
+            <input
+              type="email"
+              value={forgotPasswordEmail}
+              onChange={(e) => setForgotPasswordEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+            <button type="submit">Send Reset Link</button>
+          </form>
+          <button onClick={() => setIsForgotPassword(false)}>
+            Back to Login
+          </button>
+        </div>
+      ) : (
+        <div>
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
+          <button onClick={() => setIsForgotPassword(true)}>
+            Forgot Password?
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 
