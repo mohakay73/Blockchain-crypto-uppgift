@@ -12,7 +12,7 @@ import ResetPassword from './components/ResetPassword';
 import Profile from './components/Profile';
 import PrivateRoute from './utils/PrivateRoute';
 import AuthProvider from './context/AuthContext';
-import EmptyPage from './components/Mainpage';
+import MainPage from './components/MainPage';
 
 const App = () => {
   return (
@@ -23,7 +23,6 @@ const App = () => {
             path="/"
             element={<Navigate to="/login" />}
           />{' '}
-          {/* Default Route */}
           <Route
             path="/register"
             element={<Register />}
@@ -46,9 +45,8 @@ const App = () => {
           />
           <Route
             path="/empty"
-            element={<EmptyPage />}
+            element={<MainPage />}
           />{' '}
-          {/* Add this route */}
         </Routes>
       </Router>
     </AuthProvider>

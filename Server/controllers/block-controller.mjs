@@ -4,7 +4,7 @@ import { blockchain } from '../server.mjs';
 import Block from '../models/Block.mjs';
 
 export const mineBlock = async (req, res, next) => {
-  const data = req.body;
+  const { data } = req.body;
 
   try {
     const block = await Block.mineBlock({
@@ -12,6 +12,10 @@ export const mineBlock = async (req, res, next) => {
       data,
     });
 
+    // Save the mined block to MongoDB
+    await block.save();
+
+    // Broadcast the mined block
     pubnubServer.broadcast();
 
     res.status(201).json(new ResponseModel({ statusCode: 201, data: block }));
