@@ -16,9 +16,21 @@ const MakeTransaction = () => {
         recipient,
       });
       setMessage('Transaction successful!');
+      setAmount('');
+      setRecipient('');
+
+      // Clear the message after 3 seconds
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
     } catch (error) {
       setMessage('Transaction failed!');
       console.error(error.response ? error.response.data : error.message);
+
+      // Clear the message after 3 seconds
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
     }
   };
 

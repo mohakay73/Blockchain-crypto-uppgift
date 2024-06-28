@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../css/listBlocks.css'; // Import your CSS file
 
 const ListBlocks = () => {
   const [blocks, setBlocks] = useState([]);
@@ -22,23 +23,32 @@ const ListBlocks = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>; // Apply loading class
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error">{error}</div>; // Apply error class
   }
 
   return (
-    <div>
-      <h1>Blockchain Blocks</h1>
+    <div className="blockchain-container">
+      {' '}
+      {/* Apply container class */}
+      <h1 className="title">Mine Blocks</h1> {/* Apply title class */}
       {blocks.length === 0 ? (
-        <p>No blocks found</p>
+        <p className="no-blocks">No blocks found</p>
       ) : (
         blocks.map((block, index) => (
-          <div key={index}>
-            <h2>Block #{index + 1}</h2>
-            <pre>{JSON.stringify(block, null, 2)}</pre>
+          <div
+            key={index}
+            className="block"
+          >
+            <h2 className="block-title">Block #{index + 1}</h2>{' '}
+            {/* Apply block-title class */}
+            <pre className="block-content">
+              {JSON.stringify(block, null, 2)}
+            </pre>{' '}
+            {/* Apply block-content class */}
           </div>
         ))
       )}

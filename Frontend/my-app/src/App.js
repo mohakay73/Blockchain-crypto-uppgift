@@ -12,7 +12,7 @@ import ResetPassword from './components/ResetPassword';
 import Profile from './components/Profile';
 import PrivateRoute from './utils/PrivateRoute';
 import AuthProvider from './context/AuthContext';
-import MainPage from './components/MainPage';
+import Mainpage from './components/Mainpage';
 
 const App = () => {
   return (
@@ -45,7 +45,7 @@ const App = () => {
           />
           <Route
             path="/empty"
-            element={<MainPage />}
+            element={<Mainpage />}
           />{' '}
         </Routes>
       </Router>

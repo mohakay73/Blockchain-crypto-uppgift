@@ -1,0 +1,79 @@
+/* src/components/Login.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  display: flex;
+  justify-content: center;
+
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #8f9389; /* Dark gray background for form container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
+input[type='email'],
+input[type='password'] {
+  width: 80%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  width: 80%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #adb453; /* Blue button background */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #7f8943; /* Darker blue on hover */
+}
+
+.forgot-password,
+.back-to-login,
+.register {
+  background-color: #ca8610; /* Green button background */
+}
+
+.forgot-password:hover,
+.back-to-login:hover,
+.register:hover {
+  background-color: #8c6a1c; /* Darker green on hover */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  font-size: 7em;
+  margin-top: 20px;
+  animation: fadeIn 2s ease-in-out;
+  color: #ca8610;
+  margin-left: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -1,0 +1,36 @@
+.blockchain-container {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  text-align: center;
+}
+
+.loading,
+.error,
+.no-blocks {
+  text-align: center;
+  margin: 20px;
+}
+
+.block {
+  background-color: #333;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.block-title {
+  color: yellow;
+}
+
+.block-content {
+  color: lightgray;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}

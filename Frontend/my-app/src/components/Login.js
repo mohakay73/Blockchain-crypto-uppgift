@@ -2,12 +2,15 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import Register from './Register';
+import '../css/login.css'; // Import the CSS file
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
   const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -56,46 +59,68 @@ const Login = () => {
 
   return (
     <div>
-      {isForgotPassword ? (
-        <div>
-          <form onSubmit={handleForgotPassword}>
-            <input
-              type="email"
-              value={forgotPasswordEmail}
-              onChange={(e) => setForgotPasswordEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-            <button type="submit">Send Reset Link</button>
-          </form>
-          <button onClick={() => setIsForgotPassword(false)}>
-            Back to Login
-          </button>
-        </div>
-      ) : (
-        <div>
-          <form onSubmit={handleLogin}>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
-            <button type="submit">Login</button>
-          </form>
-          <button onClick={() => setIsForgotPassword(true)}>
-            Forgot Password?
-          </button>
-        </div>
-      )}
+      <h1 className="title">Mine</h1>
+      <div className="container">
+        {isRegister ? (
+          <Register />
+        ) : isForgotPassword ? (
+          <div>
+            <form onSubmit={handleForgotPassword}>
+              <input
+                type="email"
+                value={forgotPasswordEmail}
+                onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+              <button
+                type="submit"
+                className="forgot-password"
+              >
+                Send Reset Link
+              </button>
+            </form>
+            <button
+              onClick={() => setIsForgotPassword(false)}
+              className="back-to-login"
+            >
+              Back to Login
+            </button>
+          </div>
+        ) : (
+          <div>
+            <form onSubmit={handleLogin}>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+              <button type="submit">Login</button>
+            </form>
+            <button
+              onClick={() => setIsForgotPassword(true)}
+              className="forgot-password"
+            >
+              Forgot Password?
+            </button>
+            <button
+              onClick={() => setIsRegister(true)}
+              className="register"
+            >
+              Register
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
