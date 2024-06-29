@@ -1,12 +1,14 @@
-// src/components/Mainpage.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MakeTransaction from './MakeTransaction';
 import ListTransactions from './ListTransactions';
 import ListBlocks from './ListBlocks';
 import Mine from './Mine';
+import '../css/mainPage.css'; // Import the CSS file
 
 const Mainpage = () => {
   const [activeView, setActiveView] = useState('transaction');
+  const navigate = useNavigate();
 
   const renderActiveView = () => {
     switch (activeView) {
@@ -24,8 +26,8 @@ const Mainpage = () => {
   };
 
   return (
-    <div>
-      <nav>
+    <div className="mainpage-container">
+      <nav className="menu">
         <button onClick={() => setActiveView('transaction')}>
           Make a Transaction
         </button>
@@ -34,9 +36,12 @@ const Mainpage = () => {
         </button>
         <button onClick={() => setActiveView('blocks')}>List Blocks</button>
         <button onClick={() => setActiveView('mine')}>Mine</button>
+        <button onClick={() => navigate('/login')}>Main Page</button>
       </nav>
-      <h1>Main Page</h1>
-      {renderActiveView()}
+      <div className="content">
+        <h1>Main Page</h1>
+        {renderActiveView()}
+      </div>
     </div>
   );
 };

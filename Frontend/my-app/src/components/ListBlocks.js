@@ -34,7 +34,7 @@ const ListBlocks = () => {
     <div className="blockchain-container">
       {' '}
       {/* Apply container class */}
-      <h1 className="title">Mine Blocks</h1> {/* Apply title class */}
+      <h1 className="title">Blocks</h1> {/* Apply title class */}
       {blocks.length === 0 ? (
         <p className="no-blocks">No blocks found</p>
       ) : (

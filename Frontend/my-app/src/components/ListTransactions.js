@@ -1,6 +1,6 @@
-// src/components/ListTransactions.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../css/listTransactions.css'; // Import the CSS file
 
 const ListTransactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -25,26 +25,31 @@ const ListTransactions = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error">{error}</div>;
   }
 
   return (
-    <div>
-      <h1>Transactions</h1>
+    <div className="blockchain-container">
+      <h1 className="title">Transactions</h1>
       {transactions.length === 0 ? (
-        <p>No transactions found</p>
+        <p className="no-blocks">No transactions found</p>
       ) : (
         <ul>
           {transactions.map((transaction) => (
-            <li key={transaction.id}>
-              <p>Transaction ID: {transaction.id}</p>
-              <p>Amount: {transaction.outputMap.amount}</p>
-              <p>Recipient: {transaction.outputMap.recipient}</p>
-              <p>Sender: {transaction.inputMap.address}</p>
+            <li
+              key={transaction.id}
+              className="block"
+            >
+              <p className="block-title">Transaction ID: {transaction.id}</p>
+              <div className="block-content">
+                <p>Amount: {transaction.outputMap.amount}</p>
+                <p>Recipient: {transaction.outputMap.recipient}</p>
+                <p>Sender: {transaction.inputMap.address}</p>
+              </div>
             </li>
           ))}
         </ul>

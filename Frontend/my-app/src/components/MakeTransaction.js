@@ -1,6 +1,6 @@
-// src/components/MakeTransaction.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../css/makeTransactions.css'; // Import the CSS file
 
 const MakeTransaction = () => {
   const [amount, setAmount] = useState('');
@@ -35,10 +35,13 @@ const MakeTransaction = () => {
   };
 
   return (
-    <div>
-      <h1>Make a Transaction</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="transaction-container">
+      <h1 className="titleTransaction">Make a Transaction</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="transaction-form"
+      >
+        <div className="form-group">
           <label>Recipient</label>
           <input
             type="text"
@@ -47,7 +50,7 @@ const MakeTransaction = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Amount</label>
           <input
             type="number"
@@ -56,9 +59,14 @@ const MakeTransaction = () => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="submit-button"
+        >
+          Submit
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
     </div>
   );
 };
