@@ -38,7 +38,7 @@ const Login = () => {
 
       // Store the token and navigate to the profile page
       login(data.token, data.user); // Assuming data.user contains user details
-      navigate('/empty');
+      navigate('/mainpage');
     } catch (error) {
       console.error('Login error:', error.message);
     }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import '../css/register.css'; // Import the CSS file
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +10,9 @@ const Register = () => {
     password: '',
   });
 
-  const [message, setMessage] = useState(''); // Define the setMessage function
+  const [message, setMessage] = useState('');
   const { name, email, password } = formData;
-  const navigate = useNavigate(); // Use useNavigate from react-router-dom
+  const navigate = useNavigate();
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,10 +39,12 @@ const Register = () => {
       setMessage('Registration failed. Please try again.');
     }
   };
+
   return (
-    <div>
+    <div className="register-container">
+      <h1>Register</h1>
       <form onSubmit={onSubmit}>
-        <div>
+        <div className="form-group">
           <label>Name</label>
           <input
             type="text"
@@ -51,7 +54,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
@@ -61,7 +64,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"

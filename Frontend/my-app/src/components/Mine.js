@@ -1,50 +1,38 @@
+// src/components/MineTransactions.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../css/mineBlock.css'; // Import the CSS file for styling
 
-const MineBlockForm = () => {
-  const [data, setData] = useState('');
+const MineTransactions = () => {
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleMineTransactions = async () => {
     setLoading(true);
+    setMessage('');
     try {
-      const res = await axios.post('http://localhost:5001/api/v1/block/mine', {
-        data,
-      });
-      console.log('Mined Block:', res.data.data);
-      // Optionally, you can handle success (e.g., show a success message, reset form)
+      const response = await axios.post(
+        'http://localhost:5001/api/v1/wallet/mine'
+      );
+      setMessage('Mining successful: ');
     } catch (error) {
-      setError('Failed to mine block');
-      console.error('Error:', error);
+      setMessage('Mining failed: ' + error.message);
     }
     setLoading(false);
   };
 
   return (
-    <div>
-      <h2>Mine a New Block</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Data:
-          <input
-            type="text"
-            value={data}
-            onChange={(e) => setData(e.target.value)}
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? 'Mining...' : 'Mine Block'}
-        </button>
-        {error && <p>{error}</p>}
-      </form>
+    <div className="mine-container">
+      <h2>Mine Transactions</h2>
+      <button
+        onClick={handleMineTransactions}
+        disabled={loading}
+      >
+        {loading ? 'Mining...' : 'Mine Transactions'}
+      </button>
+      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default MineBlockForm;
+export default MineTransactions;

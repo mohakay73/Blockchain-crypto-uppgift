@@ -1,4 +1,4 @@
-/* src/components/Login.css */
+/* MineBlockForm.css */
 
 body {
   margin: 0;
@@ -8,7 +8,7 @@ body {
   color: #fff; /* White text */
   display: flex;
   justify-content: center;
-
+  align-items: center;
   height: 100vh;
 }
 
@@ -18,13 +18,12 @@ body {
   border-radius: 10px;
   background-color: #8f9389; /* Dark gray background for form container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
+  width: 300px; /* Adjust the width to make the form smaller */
 }
 
-input[type='email'],
-input[type='password'] {
-  width: 80%;
-  padding: 12px;
+input[type='text'] {
+  width: 90%; /* Adjust the width to fit within the smaller container */
+  padding: 8px; /* Reduce padding for a more compact input field */
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
@@ -32,8 +31,8 @@ input[type='password'] {
 }
 
 button {
-  width: 80%;
-  padding: 12px;
+  width: 90%; /* Adjust the width to fit within the smaller container */
+  padding: 8px; /* Reduce padding for a more compact button */
   margin: 8px 0;
   border: none;
   border-radius: 5px;
@@ -43,21 +42,26 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:disabled {
+  background-color: #7f8943; /* Darker blue when disabled */
+}
+
+button:hover:enabled {
   background-color: #7f8943; /* Darker blue on hover */
 }
 
-.forgot-password,
-.back-to-login,
-.register {
-  background-color: #ca8610; /* Green button background */
+p {
+  color: red; /* Error message in red */
 }
 
-.forgot-password:hover,
-.back-to-login:hover,
-.register:hover {
-  background-color: #8c6a1c; /* Darker green on hover */
+h2 {
+  font-size: 1.5em; /* Adjust font size for smaller form */
+  margin-bottom: 20px;
+  color: #ca8610;
+  animation: fadeIn 2s ease-in-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -67,13 +71,4 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.title {
-  font-size: 7em;
-  margin-top: 20px;
-  animation: fadeIn 2s ease-in-out;
-  color: #ca8610;
-  margin-left: 100px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

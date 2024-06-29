@@ -38,10 +38,7 @@ const Mainpage = () => {
         <button onClick={() => setActiveView('mine')}>Mine</button>
         <button onClick={() => navigate('/login')}>Main Page</button>
       </nav>
-      <div className="content">
-        <h1>Main Page</h1>
-        {renderActiveView()}
-      </div>
+      <div className="content">{renderActiveView()}</div>
     </div>
   );
 };
