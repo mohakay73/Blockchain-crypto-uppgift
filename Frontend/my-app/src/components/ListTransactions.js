@@ -39,19 +39,26 @@ const ListTransactions = () => {
         <p className="no-blocks">No transactions found</p>
       ) : (
         <ul>
-          {transactions.map((transaction) => (
-            <li
-              key={transaction.id}
-              className="block"
-            >
-              <p className="block-title">Transaction ID: {transaction.id}</p>
-              <div className="block-content">
-                <p>Amount: {transaction.outputMap.amount}</p>
-                <p>Recipient: {transaction.outputMap.recipient}</p>
-                <p>Sender: {transaction.inputMap.address}</p>
-              </div>
-            </li>
-          ))}
+          {transactions.map((transaction) => {
+            const sender = transaction.inputMap.address;
+            const [recipient, amount] = Object.entries(
+              transaction.outputMap
+            )[0];
+
+            return (
+              <li
+                key={transaction.id}
+                className="block"
+              >
+                <p className="block-title">Transaction ID: {transaction.id}</p>
+                <div className="block-content">
+                  <p>Sender: {sender}</p>
+                  <p>Recipient: {recipient}</p>
+                  <p>Amount: {amount}</p>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

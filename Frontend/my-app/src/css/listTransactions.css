@@ -1,36 +1,61 @@
+/* src/css/listTransactions.css */
+
 .blockchain-container {
-  background-color: black;
-  color: white;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  margin: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #8f9389; /* Dark gray background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #fff; /* White text */
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 .title {
   text-align: center;
+  color: #ca8610; /* Highlighted title color */
+  margin-bottom: 20px;
 }
 
 .loading,
-.error,
+.error {
+  text-align: center;
+  color: #ff0000; /* Red text for loading and error messages */
+}
+
 .no-blocks {
   text-align: center;
-  margin: 20px;
+  color: #fff; /* White text for no transactions message */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 .block {
-  background-color: #333;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
+  background-color: #4a4a4a; /* Darker gray background for blocks */
+  color: #fff; /* White text */
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .block-title {
-  color: yellow;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ca8610; /* Highlighted block title color */
 }
 
 .block-content {
-  color: lightgray;
-  white-space: pre-wrap;
-  overflow-x: auto;
+  background-color: #6e6e6e; /* Slightly lighter gray for content */
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff; /* White text */
+}
+
+.block-content p {
+  margin: 5px 0;
 }

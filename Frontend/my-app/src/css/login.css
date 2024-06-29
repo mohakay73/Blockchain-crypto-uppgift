@@ -50,10 +50,6 @@ button:hover:enabled {
   background-color: #7f8943; /* Darker blue on hover */
 }
 
-p {
-  color: red; /* Error message in red */
-}
-
 h2 {
   font-size: 1.5em; /* Adjust font size for smaller form */
   margin-bottom: 20px;
