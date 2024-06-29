@@ -16,18 +16,22 @@ body {
   border-radius: 10px;
   background-color: #8f9389; /* Dark gray background for form container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  width: 300px; /* Set a fixed width */
+  width: 400px; /* Set a fixed width */
   animation: fadeIn 2s ease-in-out;
 }
+.registerForm {
+  display: flex;
+  flex-direction: column;
+}
 
-.form-group {
+.form-groupRegister {
   margin: 10px 0;
 }
 
 input[type='text'],
 input[type='email'],
 input[type='password'] {
-  width: 80%;
+  width: 80%; /* Consistent width */
   padding: 12px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -35,7 +39,7 @@ input[type='password'] {
   border-radius: 5px;
 }
 
-button {
+.bRegister {
   width: 80%;
   padding: 12px;
   margin: 8px 0;
@@ -47,7 +51,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.bRegister:hover {
   background-color: #7f8943; /* Darker blue on hover */
 }
 

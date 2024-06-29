@@ -50,12 +50,13 @@ button:hover:enabled {
   background-color: #7f8943; /* Darker blue on hover */
 }
 
-h2 {
-  font-size: 1.5em; /* Adjust font size for smaller form */
+.title {
+  font-size: 6em; /* Adjust font size for smaller form */
   margin-bottom: 20px;
   color: #ca8610;
   animation: fadeIn 2s ease-in-out;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 5px;
 }
 
 @keyframes fadeIn {

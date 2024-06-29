@@ -59,7 +59,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1 className="title">Mine</h1>
+      <h1 className="title">MintX</h1>
       <div className="container">
         {isRegister ? (
           <Register />

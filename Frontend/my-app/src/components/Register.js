@@ -43,8 +43,11 @@ const Register = () => {
   return (
     <div className="register-container">
       <h1>Register</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
+      <form
+        className="registerForm"
+        onSubmit={onSubmit}
+      >
+        <div className="form-groupRegister">
           <label>Name</label>
           <input
             type="text"
@@ -54,7 +57,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-groupRegister">
           <label>Email</label>
           <input
             type="email"
@@ -64,7 +67,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-groupRegister">
           <label>Password</label>
           <input
             type="password"
@@ -74,7 +77,12 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="bRegister"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
       {message && <p>{message}</p>}
     </div>
