@@ -40,6 +40,10 @@ const Register = () => {
     }
   };
 
+  const handleGoToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="register-container">
       <h1>Register</h1>
@@ -85,6 +89,12 @@ const Register = () => {
         </button>
       </form>
       {message && <p>{message}</p>}
+      <button
+        className="bLogin"
+        onClick={handleGoToLogin}
+      >
+        Go to Login
+      </button>
     </div>
   );
 };

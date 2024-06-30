@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import Register from './Register';
 import '../css/login.css'; // Import the CSS file
 
 const Login = () => {
@@ -10,13 +9,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
   const [isForgotPassword, setIsForgotPassword] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch('http://localhost:5001/api/v1/auth/login', {
         method: 'POST',
@@ -57,13 +54,15 @@ const Login = () => {
     }
   };
 
+  const handleRegister = () => {
+    navigate('/register'); // Navigate to the register page
+  };
+
   return (
     <div>
       <h1 className="title">MintX</h1>
       <div className="container">
-        {isRegister ? (
-          <Register />
-        ) : isForgotPassword ? (
+        {isForgotPassword ? (
           <div>
             <form onSubmit={handleForgotPassword}>
               <input
@@ -113,7 +112,7 @@ const Login = () => {
               Forgot Password?
             </button>
             <button
-              onClick={() => setIsRegister(true)}
+              onClick={handleRegister}
               className="register"
             >
               Register

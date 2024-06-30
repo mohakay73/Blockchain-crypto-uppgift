@@ -22,7 +22,7 @@ const App = () => {
           <Route
             path="/"
             element={<Navigate to="/login" />}
-          />{' '}
+          />
           <Route
             path="/register"
             element={<Register />}
@@ -46,7 +46,7 @@ const App = () => {
           <Route
             path="/mainpage"
             element={<Mainpage />}
-          />{' '}
+          />
         </Routes>
       </Router>
     </AuthProvider>

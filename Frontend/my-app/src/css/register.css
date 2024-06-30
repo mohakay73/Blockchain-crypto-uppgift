@@ -6,7 +6,7 @@ body {
   color: #fff; /* White text */
   display: flex;
   justify-content: center;
-  align-items: center; /* Center content vertically */
+  align-items: center;
   height: 100vh;
 }
 
@@ -16,12 +16,13 @@ body {
   border-radius: 10px;
   background-color: #8f9389; /* Dark gray background for form container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  width: 400px; /* Set a fixed width */
-  animation: fadeIn 2s ease-in-out;
+  width: 300px; /* Adjust the width to make the form smaller */
 }
+
 .registerForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .form-groupRegister {
@@ -31,17 +32,22 @@ body {
 input[type='text'],
 input[type='email'],
 input[type='password'] {
-  width: 80%; /* Consistent width */
-  padding: 12px;
+  width: 90%; /* Adjust the width to fit within the smaller container */
+  padding: 8px; /* Reduce padding for a more compact input field */
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
   border-radius: 5px;
 }
 
-.bRegister {
-  width: 80%;
-  padding: 12px;
+h1 {
+  color: #ca8610;
+}
+
+.bRegister,
+.bLogin {
+  width: 90%; /* Adjust the width to fit within the smaller container */
+  padding: 8px; /* Reduce padding for a more compact button */
   margin: 8px 0;
   border: none;
   border-radius: 5px;
@@ -51,7 +57,8 @@ input[type='password'] {
   cursor: pointer;
 }
 
-.bRegister:hover {
+.bRegister:hover,
+.bLogin:hover {
   background-color: #7f8943; /* Darker blue on hover */
 }
 
