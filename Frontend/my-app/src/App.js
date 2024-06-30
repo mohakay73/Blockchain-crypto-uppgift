@@ -44,7 +44,7 @@ const App = () => {
             element={<PrivateRoute component={Profile} />}
           />
           <Route
-            path="/mainpage"
+            path="/mainpage/*"
             element={<Mainpage />}
           />
         </Routes>

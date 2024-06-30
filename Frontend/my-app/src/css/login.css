@@ -1,29 +1,38 @@
-/* MineBlockForm.css */
-
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
+  background-color: #000;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.container {
+.wrapper {
   text-align: center;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #8f9389; /* Dark gray background for form container */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  width: 300px; /* Adjust the width to make the form smaller */
+  width: 100%;
 }
 
-input[type='text'] {
-  width: 90%; /* Adjust the width to fit within the smaller container */
-  padding: 8px; /* Reduce padding for a more compact input field */
+.title {
+  color: #ca8610;
+  font-size: 7em;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #8f9389;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+input[type='email'],
+input[type='password'] {
+  width: 90%;
+  padding: 8px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
@@ -31,41 +40,26 @@ input[type='text'] {
 }
 
 button {
-  width: 90%; /* Adjust the width to fit within the smaller container */
-  padding: 8px; /* Reduce padding for a more compact button */
+  width: 90%;
+  padding: 8px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
-  background-color: #adb453; /* Blue button background */
+  background-color: #adb453;
   color: white;
   font-size: 16px;
   cursor: pointer;
 }
 
-button:disabled {
-  background-color: #7f8943; /* Darker blue when disabled */
+button:hover {
+  background-color: #7f8943;
 }
 
-button:hover:enabled {
-  background-color: #7f8943; /* Darker blue on hover */
-}
-
-.title {
-  font-size: 6em; /* Adjust font size for smaller form */
-  margin-bottom: 20px;
-  color: #ca8610;
-  animation: fadeIn 2s ease-in-out;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 5px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.error {
+  color: red;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ececec;
+  border: 1px solid rgb(2, 2, 2);
+  border-radius: 5px;
 }

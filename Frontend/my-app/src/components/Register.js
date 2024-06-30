@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
-import '../css/register.css'; // Import the CSS file
+import '../css/register.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,13 +23,9 @@ const Register = () => {
       const data = await register(formData);
       console.log(data);
 
-      // Clear form fields
       setFormData({ name: '', email: '', password: '' });
-
-      // Set success message
       setMessage('Registration successful! Redirecting to login...');
 
-      // Redirect to login after a brief delay
       setTimeout(() => {
         setMessage('');
         navigate('/login');

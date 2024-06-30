@@ -1,36 +1,77 @@
-.mainpage-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: black;
-  color: white;
+/* mainPage.css */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .menu {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideDown 1s ease-in-out;
 }
 
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.menu a,
 .menu button {
-  background-color: #adb453;
-  color: black;
+  background-color: #ca8610;
+  color: white;
   border: none;
-  padding: 15px;
+  padding: 15px 20px;
   margin: 0 10px;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
-  font-size: 20px;
-  transition: background-color 0.3s ease;
-  width: 250px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  width: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-decoration: none;
+  animation: fadeIn 2s ease-in-out;
 }
 
+.menu a:hover,
 .menu button:hover {
-  background-color: orange;
+  background-color: #8f621a;
+  transform: scale(1.05);
+}
+
+.menu button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
 }
 
 .content {
   flex-grow: 1;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  animation: fadeIn 2s ease-in-out;
 }

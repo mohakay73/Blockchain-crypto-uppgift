@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, useNavigate, Link } from 'react-router-dom';
 import MakeTransaction from './MakeTransaction';
 import ListTransactions from './ListTransactions';
 import ListBlocks from './ListBlocks';
@@ -7,38 +7,37 @@ import Mine from './Mine';
 import '../css/mainPage.css'; // Import the CSS file
 
 const Mainpage = () => {
-  const [activeView, setActiveView] = useState('transaction');
   const navigate = useNavigate();
 
-  const renderActiveView = () => {
-    switch (activeView) {
-      case 'transaction':
-        return <MakeTransaction />;
-      case 'transactions':
-        return <ListTransactions />;
-      case 'blocks':
-        return <ListBlocks />;
-      case 'mine':
-        return <Mine />;
-      default:
-        return <MakeTransaction />;
-    }
-  };
-
   return (
-    <div className="mainpage-container">
+    <div>
       <nav className="menu">
-        <button onClick={() => setActiveView('transaction')}>
-          Make a Transaction
-        </button>
-        <button onClick={() => setActiveView('transactions')}>
-          List Transactions
-        </button>
-        <button onClick={() => setActiveView('blocks')}>List Blocks</button>
-        <button onClick={() => setActiveView('mine')}>Mine</button>
+        <Link to="/mainpage/transaction">Make a Transaction</Link>
+        <Link to="/mainpage/transactions">List Transactions</Link>
+        <Link to="/mainpage/blocks">List Blocks</Link>
+        <Link to="/mainpage/mine">Mine</Link>
         <button onClick={() => navigate('/login')}>Main Page</button>
       </nav>
-      <div className="content">{renderActiveView()}</div>
+      <div className="content">
+        <Routes>
+          <Route
+            path="transaction"
+            element={<MakeTransaction />}
+          />
+          <Route
+            path="transactions"
+            element={<ListTransactions />}
+          />
+          <Route
+            path="blocks"
+            element={<ListBlocks />}
+          />
+          <Route
+            path="mine"
+            element={<Mine />}
+          />
+        </Routes>
+      </div>
     </div>
   );
 };
