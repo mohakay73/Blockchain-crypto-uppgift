@@ -10,16 +10,11 @@ export default class TransactionPool {
   }
 
   clearBlockTransactions({ chain }) {
-    // Iterera igenom blockkedjan...
     for (let i = 1; i < chain.length; i++) {
-      // Hämta ut ett block för varje iteration...
       const block = chain[i];
 
-      // Gå igenom varje transaktion som finns i blocket...
       for (let transaction of block.data) {
-        // Om transaktion finns kvar i transactionMap...
         if (this.transactionMap[transaction.id]) {
-          // Ta bort transaktion ifrån transactionMap...
           delete this.transactionMap[transaction.id];
         }
       }

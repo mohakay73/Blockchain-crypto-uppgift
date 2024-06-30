@@ -1,7 +1,6 @@
-// src/components/MineTransactions.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../css/mineBlock.css'; // Import the CSS file for styling
+import '../css/mineBlock.css';
 
 const MineTransactions = () => {
   const [message, setMessage] = useState('');

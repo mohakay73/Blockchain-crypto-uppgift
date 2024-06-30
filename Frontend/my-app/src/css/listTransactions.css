@@ -4,7 +4,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #8f9389; /* Dark gray background */
+  background-color: #8f9389;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   color: #fff; /* White text */
@@ -14,19 +14,20 @@
 
 .title {
   text-align: center;
-  color: #ca8610; /* Highlighted title color */
+  color: #ca8610;
   margin-bottom: 20px;
+  font-size: 4em;
 }
 
 .loading,
 .error {
   text-align: center;
-  color: #ff0000; /* Red text for loading and error messages */
+  color: #ff0000;
 }
 
 .no-blocks {
   text-align: center;
-  color: #fff; /* White text for no transactions message */
+  color: #fff;
 }
 
 ul {
@@ -35,8 +36,8 @@ ul {
 }
 
 .block {
-  background-color: #4a4a4a; /* Darker gray background for blocks */
-  color: #fff; /* White text */
+  background-color: #4a4a4a;
+  color: #fff;
   margin-bottom: 10px;
   padding: 15px;
   border-radius: 5px;
@@ -46,14 +47,14 @@ ul {
 .block-title {
   font-weight: bold;
   margin-bottom: 10px;
-  color: #ca8610; /* Highlighted block title color */
+  color: #ca8610;
 }
 
 .block-content {
-  background-color: #6e6e6e; /* Slightly lighter gray for content */
+  background-color: #6e6e6e;
   padding: 10px;
   border-radius: 5px;
-  color: #fff; /* White text */
+  color: #fff;
 }
 
 .block-content p {

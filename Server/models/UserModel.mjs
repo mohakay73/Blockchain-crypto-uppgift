@@ -43,7 +43,6 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
 });
 
-//Metoder som vi kan använda på schemat
 userSchema.methods.validatePassword = async function (passwordToCheck) {
   return await bcrypt.compare(passwordToCheck, this.password);
 };

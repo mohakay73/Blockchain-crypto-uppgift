@@ -4,14 +4,14 @@ import {
   getTransactionPool,
   getWalletBalance,
   mineTransactions,
-  getTransactions, // Import the getTransactions controller
+  getTransactions,
 } from '../controllers/transaction-controller.mjs';
 
 const router = express.Router();
 
 router.route('/transaction').post(addTransaction);
-router.route('/transactions/pool').get(getTransactionPool); // Rename this route to make it more descriptive
-router.route('/transactions').get(getTransactions); // Add this route to get all transactions from the database
+router.route('/transactions/pool').get(getTransactionPool);
+router.route('/transactions').get(getTransactions);
 router.route('/mine').post(mineTransactions);
 router.route('/info').get(getWalletBalance);
 

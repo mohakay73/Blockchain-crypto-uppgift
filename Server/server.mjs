@@ -35,10 +35,9 @@ export const pubnubServer = new PubNubServer({
 const app = express();
 app.use(express.json());
 
-// Add CORS middleware with options to allow requests from specific origins
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow requests from this origin
-  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));

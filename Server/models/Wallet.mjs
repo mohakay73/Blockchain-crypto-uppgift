@@ -10,7 +10,6 @@ export default class Wallet {
     this.publicKey = this.keyPair.getPublic().encode('hex');
   }
 
-  // STATIC METHODS...
   static calculateBalance({ chain, address }) {
     let total = 0;
     let hasAddedTransaction = false;
