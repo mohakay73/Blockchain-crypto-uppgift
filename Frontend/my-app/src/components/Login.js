@@ -75,7 +75,7 @@ const Login = () => {
 
   return (
     <div className="wrapper">
-      <h1 className="title">MintX</h1>
+      <h1 className="title-login">MinX</h1>
       <div className="container">
         {isForgotPassword ? (
           <div>

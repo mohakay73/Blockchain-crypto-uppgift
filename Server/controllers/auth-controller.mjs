@@ -70,14 +70,17 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   const email = req.body.email;
 
   if (!email) {
-    return next(new ErrorResponse('E-post för återställning saknas', 400));
+    return next(new ErrorResponse('Email is missing', 400));
   }
 
   let user = await User.findOne({ email });
 
   if (!user)
     return next(
-      new ErrorResponse(`Ingen användare med e-post ${email} kunde hittas`, 400)
+      new ErrorResponse(
+        `No user is registered with the following emial ${email}`,
+        400
+      )
     );
 
   const resetToken = user.createResetPasswordToken();

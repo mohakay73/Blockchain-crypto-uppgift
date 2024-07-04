@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import mongoSanitize from 'express-mongo-sanitize';
 import Blockchain from './models/Blockchain.mjs';
 import TransactionPool from './models/TransactionPool.mjs';
 import Wallet from './models/Wallet.mjs';
@@ -34,6 +35,7 @@ export const pubnubServer = new PubNubServer({
 
 const app = express();
 app.use(express.json());
+app.use(mongoSanitize());
 
 const corsOptions = {
   origin: 'http://localhost:3000',

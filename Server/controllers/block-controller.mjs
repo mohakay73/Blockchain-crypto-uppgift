@@ -12,10 +12,8 @@ export const mineBlock = async (req, res, next) => {
       data,
     });
 
-    // Save the mined block to MongoDB
     await block.save();
 
-    // Broadcast the mined block
     pubnubServer.broadcast();
 
     res.status(201).json(new ResponseModel({ statusCode: 201, data: block }));
